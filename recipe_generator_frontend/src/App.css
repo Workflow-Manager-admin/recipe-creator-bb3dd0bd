@@ -1,104 +1,233 @@
-/* CSS Variables for Theme Management */
+/* Theme Colors for Recipe Generator */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #4CAF50;         /* green */
+  --accent: #FF7043;          /* orange / CTA */
+  --secondary: #FFD54F;       /* yellow - highlights */
+  --bg-main: #fff;
+  --bg-section: #f6f8fa;
+  --bg-card: #fff;
+  --text-main: #232523;
+  --text-secondary: #555;
+  --border-card: #e5e5e6;
+  --shadow-card: 0 2px 8px rgba(76,175,80,0.08);
+  --form-input-bg: #f8f9fa;
+  --form-border: #ececec;
+  --form-placeholder: #bbb;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
-
+/* App container styles */
 .App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-main);
+  background: var(--bg-main);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Branding/header bar */
+.app-header-bar {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 2.2rem 1rem 1.3rem 2rem;
+  font-weight: 500;
+  border-bottom: 3px solid var(--secondary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.app-logo {
+  font-size: 2.3rem;
+  line-height: 1;
+  margin-right: 0.4rem;
+}
+
+.app-brand {
+  font-size: 1.6rem;
+  font-family: 'Manrope', 'Segoe UI', Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.app-tagline {
+  margin-left: auto;
+  font-size: 1rem;
+  color: var(--secondary);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.3em 0.95em;
+  border-radius: 20px;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  border: 1.2px dashed var(--secondary);
+}
+
+@media (max-width: 600px) {
+  .app-header-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.33rem;
+    padding: 1.2rem 1rem 0.7rem 1rem;
+  }
+  .app-tagline {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    font-size: 0.90rem;
+    padding: 0.2em 0.6em;
   }
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* Main content container */
+.main-content {
+  max-width: 620px;
+  margin: 2.5rem auto 0 auto;
+  padding: 0 1rem 3rem 1rem;
+}
+
+/* Recipe generation form */
+.recipe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 0.7rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background: var(--bg-section);
+  padding: 1.6rem 1.2rem 1.4rem 1.2rem;
+  border-radius: 18px;
+  box-shadow: 0px 4px 16px rgba(255,112,67,0.045);
+  margin-bottom: 2.3rem;
+  border: 1.5px solid var(--border-card);
+}
+
+.form-label {
+  font-size: 1.02rem;
+  color: var(--text-main);
+  font-weight: 500;
+  flex: 1 0 100%;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.02em;
+}
+
+.form-input {
+  flex: 1 1 350px;
+  min-width: 180px;
+  padding: 0.8em 1em;
+  border-radius: 6px;
+  border: 1.2px solid var(--form-border);
+  background: var(--form-input-bg);
+  font-size: 1.03em;
+  color: var(--text-main);
+  margin-right: 0.4rem;
+  transition: border 0.22s;
+  outline: none;
+}
+
+.form-input:focus {
+  border: 1.5px solid var(--primary);
+}
+
+.form-input::placeholder {
+  color: var(--form-placeholder);
+  letter-spacing: 0.01em;
+}
+
+.btn-generate {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 0.8em 1.5em;
+  border-radius: 7px;
+  font-size: 1.08em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 9px rgba(255,112,67,0.13);
+  letter-spacing: 0.01em;
+  transition: background 0.18s, box-shadow 0.18s;
+  margin-left: 0.1rem;
+}
+
+.btn-generate:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  background: #ffbca6;
+}
+
+/* Recipes section (card-style container) */
+.recipes-section {
+  margin-top: 0.5rem;
+}
+
+/* Recipe cards (list) */
+.recipe-cards-list {
+  display: grid;
+  gap: 1.2rem 1.7rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 820px) {
+  .main-content {
+    max-width: 98vw;
+  }
+  .recipe-cards-list {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+.recipe-card {
+  background: var(--bg-card);
+  border: 1.7px solid var(--border-card);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+  padding: 2.1rem 1.3rem 1.4rem 1.3rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
+  gap: 0.7rem;
+  transition: box-shadow 0.15s, border 0.18s;
   position: relative;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.recipe-card.highlight {
+  border: 2px solid var(--primary);
+  box-shadow: 0 6px 24px rgba(76,175,80,0.08);
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+.recipe-title {
+  font-size: 1.24rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 0.3rem 0;
+  letter-spacing: 0.01em;
+}
+
+.recipe-section {
+  margin: 0.15rem 0 0.29rem 0;
+}
+
+.recipe-section strong {
+  color: var(--accent);
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+/* Empty message styling */
+.empty-message {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.13rem;
+  margin: 2.7rem auto 1.3rem auto;
+  opacity: 0.75;
+  padding: 0.7em 0;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 900px) {
+  .recipe-card, .recipe-form {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+  .main-content {
+    padding: 0 2vw 3rem 2vw;
   }
 }
